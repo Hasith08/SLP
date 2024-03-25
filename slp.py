@@ -42,21 +42,23 @@
 #     st.write("Parsed Tree:")
 #     st.write(parsed_tree)
 
+
 import streamlit as st
 import nltk
 from nltk.corpus import treebank
 from nltk import PCFG, ViterbiParser
 
-# Function to download NLTK resources using GUI
-def download_nltk_resources():
-    st.write("Downloading NLTK resources...")
-    nltk.download_gui()
+# Function to provide instructions for downloading NLTK resources
+def prompt_download_nltk_resources():
+    st.write("NLTK resource 'punkt' not found.")
+    st.write("Please use the NLTK Downloader to obtain the resource:")
+    st.code("import nltk\nnltk.download('punkt')")
 
-# Check if NLTK resources are downloaded, if not, download them
+# Check if NLTK resources are downloaded, if not, prompt the user to download them
 try:
     nltk.data.find("tokenizers/punkt")
 except LookupError:
-    download_nltk_resources()
+    prompt_download_nltk_resources()
 
 # Load the treebank dataset
 nltk.download('treebank')
@@ -93,4 +95,3 @@ if st.button("Parse"):
     parsed_tree = evaluate_parser(sentence)
     st.write("Parsed Tree:")
     st.write(parsed_tree)
-
