@@ -42,7 +42,8 @@
 #     st.write("Parsed Tree:")
 #     st.write(parsed_tree)
 
-
+import nltk
+nltk.download('punkt')
 import streamlit as st
 import nltk
 from nltk.corpus import treebank
