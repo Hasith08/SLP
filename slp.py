@@ -42,7 +42,6 @@
 #     st.write("Parsed Tree:")
 #     st.write(parsed_tree)
 
-
 import streamlit as st
 import nltk
 from nltk.corpus import treebank
@@ -54,7 +53,9 @@ def download_nltk_resources():
     nltk.download_gui()
 
 # Check if NLTK resources are downloaded, if not, download them
-if not nltk.data.find("tokenizers/punkt"):
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
     download_nltk_resources()
 
 # Load the treebank dataset
@@ -92,5 +93,4 @@ if st.button("Parse"):
     parsed_tree = evaluate_parser(sentence)
     st.write("Parsed Tree:")
     st.write(parsed_tree)
-
 
